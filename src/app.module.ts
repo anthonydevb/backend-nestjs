@@ -36,7 +36,7 @@ import { Justificacion } from './entities/justificacion.entity';
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     ScheduleModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'postgres', // Cambiado a PostgreSQL
+      type: 'postgres', // PostgreSQL
       host: process.env.DATABASE_HOST,
       port: parseInt(process.env.DATABASE_PORT ?? '5432'),
       username: process.env.DATABASE_USER,
@@ -54,7 +54,10 @@ import { Justificacion } from './entities/justificacion.entity';
         PasswordResetToken,
         Justificacion,
       ],
-      synchronize: process.env.NODE_ENV !== 'production', // Solo dev
+      synchronize: process.env.NODE_ENV !== 'production',
+      ssl: {
+        rejectUnauthorized: false, // Importante para conectar a Render
+      },
     }),
     EventsModule,
     UsersModule,
