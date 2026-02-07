@@ -6,7 +6,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-// Módulos de tu app
+// Módulos
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ProfessorsModule } from './modules/professors/professors.module';
@@ -36,7 +36,7 @@ import { Justificacion } from './entities/justificacion.entity';
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     ScheduleModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'postgres', // PostgreSQL
+      type: 'postgres',
       host: process.env.DATABASE_HOST,
       port: parseInt(process.env.DATABASE_PORT ?? '5432'),
       username: process.env.DATABASE_USER,
@@ -54,9 +54,9 @@ import { Justificacion } from './entities/justificacion.entity';
         PasswordResetToken,
         Justificacion,
       ],
-      synchronize: process.env.NODE_ENV !== 'production',
+      synchronize: process.env.NODE_ENV !== 'production', // Solo en dev
       ssl: {
-        rejectUnauthorized: false, // Importante para conectar a Render
+        rejectUnauthorized: false, // Necesario para Render
       },
     }),
     EventsModule,

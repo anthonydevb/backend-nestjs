@@ -72,7 +72,7 @@ export class Justificacion {
   @UpdateDateColumn()
   fechaActualizacion: Date;
 
-  @Column({ type: 'datetime', nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   fechaAprobacion: Date | null;
 }
 
